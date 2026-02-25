@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <title>Redirecting...</title>
-    <script>
-        // Запомни: твой репозиторий называется 'kotoro', base href="/kotoro/"
-        var basePath = '/kotoro/';
-        // Получаем полный URL, который пытался открыть пользователь
-        var originalUrl = window.location.href;
-        // Кодируем его, чтобы безопасно вставить как параметр
-        var encodedUrl = encodeURIComponent(originalUrl);
-        // Перенаправляем на index.html с параметром redirect
-        window.location.replace(basePath + '?redirect=' + encodedUrl);
+    <meta charset="utf-8">
+    <title>WKotoro</title>
+    <script type="text/javascript">
+        // Single Page Apps for GitHub Pages
+        // MIT License
+        // https://github.com/rafgraph/spa-github-pages
+
+        // Твой репозиторий: kotoro (один сегмент пути)
+        var pathSegmentsToKeep = 1;
+
+        var l = window.location;
+        l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+            l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash
+        );
     </script>
 </head>
 <body>
