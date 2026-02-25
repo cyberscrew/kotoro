@@ -40,6 +40,16 @@
     </div>
     <script>var Module;</script>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var redirectUrl = params.get('redirect');
+            if (redirectUrl) {
+                // Очищаем URL от параметра redirect, подменяем историю
+                window.history.replaceState(null, null, redirectUrl);
+            }
+        })();
+    </script>
 </body>
 
 </html>

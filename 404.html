@@ -2,7 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="Refresh" content="0; URL=/" />
+    <title>Redirecting...</title>
+    <script>
+        // Запомни: твой репозиторий называется 'kotoro', base href="/kotoro/"
+        var basePath = '/kotoro/';
+        // Получаем полный URL, который пытался открыть пользователь
+        var originalUrl = window.location.href;
+        // Кодируем его, чтобы безопасно вставить как параметр
+        var encodedUrl = encodeURIComponent(originalUrl);
+        // Перенаправляем на index.html с параметром redirect
+        window.location.replace(basePath + '?redirect=' + encodedUrl);
+    </script>
 </head>
 <body>
 </body>
