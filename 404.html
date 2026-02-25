@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>WKotoro</title>
-    <script type="text/javascript">
-        // Single Page Apps for GitHub Pages
-        // MIT License
-        // https://github.com/rafgraph/spa-github-pages
-
-        // Твой репозиторий: kotoro (один сегмент пути)
-        var pathSegmentsToKeep = 1;
-
-        var l = window.location;
-        l.replace(
-            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-            l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-            l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-            (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-            l.hash
-        );
+    <meta charset="utf-8" />
+    <title>Redirecting...</title>
+    <script>
+        // Полный путь, который запросил пользователь (включая search и hash)
+        var fullPath = window.location.pathname + window.location.search + window.location.hash;
+        // Кодируем для безопасной передачи в параметре
+        var encodedPath = encodeURIComponent(fullPath);
+        // Базовый адрес приложения (совпадает с base href)
+        var baseUrl = '/kotoro/';
+        // Перенаправляем на index.html с параметром redirect
+        window.location.replace(baseUrl + '?redirect=' + encodedPath);
     </script>
 </head>
 <body>
