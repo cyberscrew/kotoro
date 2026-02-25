@@ -36,22 +36,7 @@
         <a href="." class="reload">Reload</a>
         <span class="dismiss">🗙</span>
     </div>
-
     <script>var Module;</script>
     <script src="_framework/blazor.webassembly.js"></script>
-
-    <!-- ===== СКРИПТ ВОССТАНОВЛЕНИЯ МАРШРУТА ===== -->
-    <script>
-        (function() {
-            var params = new URLSearchParams(window.location.search);
-            var redirectPath = params.get('redirect');
-            if (redirectPath) {
-                // Восстанавливаем путь (декодируем и подменяем history)
-                var decodedPath = decodeURIComponent(redirectPath);
-                history.replaceState(null, null, decodedPath);
-            }
-        })();
-    </script>
-    <!-- ===== КОНЕЦ СКРИПТА ===== -->
 </body>
 </html>

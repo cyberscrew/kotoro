@@ -2,17 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Redirecting...</title>
-    <script>
-        // Полный путь, который запросил пользователь (включая search и hash)
-        var fullPath = window.location.pathname + window.location.search + window.location.hash;
-        // Кодируем для безопасной передачи в параметре
-        var encodedPath = encodeURIComponent(fullPath);
-        // Базовый адрес приложения (совпадает с base href)
-        var baseUrl = '/kotoro/';
-        // Перенаправляем на index.html с параметром redirect
-        window.location.replace(baseUrl + '?redirect=' + encodedPath);
-    </script>
+    <meta http-equiv="Refresh" content="0; URL=/" />
 </head>
 <body>
 </body>
