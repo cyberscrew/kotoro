@@ -38,5 +38,14 @@
     </div>
     <script>var Module;</script>
     <script src="_framework/blazor.webassembly.js"></script>
+    <script>
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var redirectPath = params.get('redirect');
+            if (redirectPath) {
+                history.replaceState(null, null, decodeURIComponent(redirectPath));
+            }
+        })();
+    </script>
 </body>
 </html>

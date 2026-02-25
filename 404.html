@@ -2,7 +2,13 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta http-equiv="Refresh" content="0; URL=/" />
+    <title>Redirecting...</title>
+    <script>
+        // Сохраняем полный путь (с /settings, /times и т.д.)
+        var fullPath = window.location.pathname + window.location.search + window.location.hash;
+        // Передаём его в параметре redirect
+        window.location.replace('/kotoro/?redirect=' + encodeURIComponent(fullPath));
+    </script>
 </head>
 <body>
 </body>
