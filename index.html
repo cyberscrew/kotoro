@@ -8,17 +8,22 @@
     <base href="/kotoro/" />
     <link rel="stylesheet" href="css/app.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- If you add any scoped CSS files, uncomment the following to load them
+    <link href="WKotoro.styles.css" rel="stylesheet" /> -->
     <style>
         html, body {
             margin: 0;
             padding: 0;
-            height: 100svh; /* <-- Ключевое свойство */
-            overflow: hidden; /* Запрещаем прокрутку всей страницы */
+            height: 100%;
+            overflow: hidden; /* отключаем прокрутку документа */
             background-color: #333;
         }
 
         #app {
-            height: 100svh;
+            height: 100%;
+            overflow: hidden; /* предотвращает случайное появление прокрутки */
+            display: flex;
+            flex-direction: column; /* чтобы дочерние элементы могли гибко распределяться */
         }
     </style>
 </head>
@@ -37,21 +42,8 @@
         <a href="." class="reload">Reload</a>
         <span class="dismiss">🗙</span>
     </div>
-
     <script>var Module;</script>
     <script src="_framework/blazor.webassembly.js"></script>
-
-    <!-- Скрипт восстановления пути из параметра redirect -->
-    <script>
-        (function() {
-            var params = new URLSearchParams(window.location.search);
-            var redirectPath = params.get('redirect');
-            if (redirectPath) {
-                // Декодируем и подменяем адресную строку без перезагрузки
-                history.replaceState(null, null, decodeURIComponent(redirectPath));
-            }
-        })();
-    </script>
 </body>
 
 </html>
