@@ -36,8 +36,21 @@
         <a href="." class="reload">Reload</a>
         <span class="dismiss">🗙</span>
     </div>
+
     <script>var Module;</script>
     <script src="_framework/blazor.webassembly.js"></script>
+
+    <!-- Скрипт восстановления пути из параметра redirect -->
+    <script>
+        (function() {
+            var params = new URLSearchParams(window.location.search);
+            var redirectPath = params.get('redirect');
+            if (redirectPath) {
+                // Декодируем и подменяем адресную строку без перезагрузки
+                history.replaceState(null, null, decodeURIComponent(redirectPath));
+            }
+        })();
+    </script>
 </body>
 
 </html>

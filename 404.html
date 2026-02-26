@@ -1,43 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WKotoro</title>
-    <base href="/kotoro/" />
-    <link rel="stylesheet" href="css/app.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background-color: #333;
-        }
-
-        #app {
-            height: 100%;
-        }
-    </style>
+    <title>Redirecting...</title>
+    <script>
+        // Базовый путь твоего приложения (совпадает с <base href>)
+        var basePath = '/kotoro/';
+        // Полный путь, который запросил пользователь (например, /settings)
+        var fullPath = window.location.pathname + window.location.search + window.location.hash;
+        // Перенаправляем на index.html с параметром redirect
+        window.location.replace(basePath + '?redirect=' + encodeURIComponent(fullPath));
+    </script>
 </head>
-
 <body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
-
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="." class="reload">Reload</a>
-        <span class="dismiss">🗙</span>
-    </div>
-    <script>var Module;</script>
-    <script src="_framework/blazor.webassembly.js"></script>
 </body>
-
 </html>
