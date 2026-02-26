@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "WKotoro",
   "resources": {
-    "hash": "sha256-VpJOTrEIuEkKv9qMRoT169fZGVOQercMWkaywDPQUbk=",
+    "hash": "sha256-zIsnCkT4LV4umLOz1/EiOdEsG/4mzv/hfIUBtjIEtR4=",
     "fingerprinting": {
       "Blazored.LocalStorage.ux02l71ii3.wasm": "Blazored.LocalStorage.wasm",
       "Microsoft.AspNetCore.Components.f31mdvrlqo.wasm": "Microsoft.AspNetCore.Components.wasm",
@@ -36,7 +36,7 @@
       "System.Text.RegularExpressions.0dsm3cl979.wasm": "System.Text.RegularExpressions.wasm",
       "System.Threading.n5ppejuuhz.wasm": "System.Threading.wasm",
       "System.Private.CoreLib.g035abaspg.wasm": "System.Private.CoreLib.wasm",
-      "WKotoro.i5jyqozhzn.wasm": "WKotoro.wasm",
+      "WKotoro.bdbxlrl9jq.wasm": "WKotoro.wasm",
       "dotnet.js": "dotnet.js",
       "dotnet.native.xidrk0eo52.js": "dotnet.native.js",
       "dotnet.native.y68cfu4kuf.wasm": "dotnet.native.wasm",
@@ -95,7 +95,7 @@
       "System.Text.Json.44ka4i6vyl.wasm": "sha256-rE/oUl3hFFuV5WDnzKxT7e6Ho8dVBaiJCsF39+n8TrQ=",
       "System.Text.RegularExpressions.0dsm3cl979.wasm": "sha256-FFykQ+kAAP07g/uCw4XB5dloFN6Z67td4iqzQqKZkas=",
       "System.Threading.n5ppejuuhz.wasm": "sha256-ZVqAdmVQkqedPOVid8yORJq6/P4I+NlvR19QR4PIQfY=",
-      "WKotoro.i5jyqozhzn.wasm": "sha256-ikA9YQdphVTyWQB6acY/AViTuNlo4jyBe2Srcl2U2bA="
+      "WKotoro.bdbxlrl9jq.wasm": "sha256-z8gIgg/x4pZ20b2oA1xyWh8Rmc+KfnP5F0gz4zcIJGs="
     }
   },
   "cacheBootResources": true,
