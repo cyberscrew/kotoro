@@ -1,8 +1,8 @@
 ﻿// wwwroot/js/swipe.js
 (function () {
     let openSwipeElement = null;
-    const threshold = 40;      // порог открытия (пиксели)
-    const actionWidth = 50;    // ширина кнопки удаления
+    const threshold = 40;      // порог для открытия/закрытия (пиксели)
+    const actionWidth = 50;    // ширина кнопки удаления (должна совпадать с CSS)
 
     function closeSwipe(element) {
         if (!element) return;
@@ -15,27 +15,33 @@
     function initSwipe(element) {
         let startX = 0;
         let isSwiping = false;
+        let startTranslate = 0; // запоминаем начальное смещение при старте жеста
         const content = element.querySelector('.swipe-content');
 
         // ----- Touch события -----
         const onTouchStart = (e) => {
+            // если есть другой открытый, закрываем его
             if (openSwipeElement && openSwipeElement !== element) {
                 closeSwipe(openSwipeElement);
             }
             startX = e.touches[0].clientX;
             isSwiping = true;
             element.classList.add('swiping');
+            // запоминаем текущий translate (если открыт, то actionWidth, иначе 0)
+            startTranslate = element.dataset.open === 'true' ? actionWidth : 0;
         };
 
         const onTouchMove = (e) => {
             if (!isSwiping) return;
-            e.preventDefault(); // запрещаем прокрутку страницы
+            e.preventDefault();
             const currentX = e.touches[0].clientX;
-            const delta = currentX - startX; // >0 при движении вправо
-            if (delta > 0) {
-                const translate = Math.min(delta, actionWidth); // сдвиг вправо
-                content.style.transform = `translateX(${translate}px)`;
-            }
+            const delta = currentX - startX; // положительное при движении вправо
+
+            // Вычисляем новый translate на основе начального смещения и дельты
+            let newTranslate = startTranslate + delta;
+            // Ограничиваем от 0 до actionWidth
+            newTranslate = Math.max(0, Math.min(newTranslate, actionWidth));
+            content.style.transform = `translateX(${newTranslate}px)`;
         };
 
         const onTouchEnd = (e) => {
@@ -43,11 +49,15 @@
             isSwiping = false;
             element.classList.remove('swiping');
             const delta = e.changedTouches[0].clientX - startX;
-            if (delta > threshold) {
+            const finalTranslate = startTranslate + delta;
+            // Решаем, оставить открытым или закрыть
+            if (finalTranslate >= threshold) {
+                // открываем
                 openSwipeElement = element;
                 content.style.transform = `translateX(${actionWidth}px)`;
                 element.dataset.open = 'true';
             } else {
+                // закрываем
                 closeSwipe(element);
             }
         };
@@ -60,6 +70,7 @@
             startX = e.clientX;
             isSwiping = true;
             element.classList.add('swiping');
+            startTranslate = element.dataset.open === 'true' ? actionWidth : 0;
             document.addEventListener('mousemove', onMouseMove);
             document.addEventListener('mouseup', onMouseUp);
         };
@@ -68,10 +79,9 @@
             if (!isSwiping) return;
             const currentX = e.clientX;
             const delta = currentX - startX;
-            if (delta > 0) {
-                const translate = Math.min(delta, actionWidth);
-                content.style.transform = `translateX(${translate}px)`;
-            }
+            let newTranslate = startTranslate + delta;
+            newTranslate = Math.max(0, Math.min(newTranslate, actionWidth));
+            content.style.transform = `translateX(${newTranslate}px)`;
         };
 
         const onMouseUp = (e) => {
@@ -81,7 +91,8 @@
             isSwiping = false;
             element.classList.remove('swiping');
             const delta = e.clientX - startX;
-            if (delta > threshold) {
+            const finalTranslate = startTranslate + delta;
+            if (finalTranslate >= threshold) {
                 openSwipeElement = element;
                 content.style.transform = `translateX(${actionWidth}px)`;
                 element.dataset.open = 'true';
@@ -90,13 +101,11 @@
             }
         };
 
-        // Навешиваем обработчики
         element.addEventListener('touchstart', onTouchStart, { passive: false });
         element.addEventListener('touchmove', onTouchMove, { passive: false });
         element.addEventListener('touchend', onTouchEnd);
         element.addEventListener('mousedown', onMouseDown);
 
-        // Для возможности закрыть извне
         element.closeSwipe = () => closeSwipe(element);
     }
 
@@ -127,7 +136,6 @@
         });
     }
 
-    // Следим за появлением новых элементов (например, после добавления)
     const observer = new MutationObserver(initAllSwipes);
     observer.observe(document.body, { childList: true, subtree: true });
 
@@ -155,6 +163,5 @@
         }
     });
 
-    // Запускаем при загрузке
     initAllSwipes();
 })();
