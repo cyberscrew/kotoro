@@ -1,3 +1,8 @@
+* {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
 .valid.modified:not([type=checkbox]) {
     outline: 1px solid #26b050;
 }
